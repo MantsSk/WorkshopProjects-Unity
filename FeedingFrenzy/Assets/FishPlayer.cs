@@ -19,6 +19,21 @@ public class FishPlayer : MonoBehaviour
         Movement();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject);
+
+        if (collision.gameObject.transform.localScale.y > this.transform.localScale.y)
+        {
+            Destroy(this.gameObject, 0.5f);
+        }
+        else
+        {
+            Destroy(collision.gameObject, 0.5f);
+            this.gameObject.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+        }
+    }
+
     void Movement()
     {
         // apply forward input
